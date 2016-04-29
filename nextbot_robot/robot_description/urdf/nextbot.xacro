@@ -50,6 +50,72 @@
 
 
 
+
+      <joint name="asus_camera_depth_joint" type="fixed">
+        <origin xyz="0.0 0.049 0.0" rpy="0 0 0" />
+        <parent link="asus_camera_link" />
+        <child link="asus_camera_depth_frame"/>
+      </joint>
+
+      <link name="asus_camera_depth_frame"/>
+
+      <joint name="asus_camera_depth_optical_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="${-PI/2} 0.0 ${-PI/2}" />
+        <parent link="asus_camera_depth_frame" />
+        <child link="asus_camera_depth_optical_frame"/>
+      </joint>
+
+      <link name="asus_camera_depth_optical_frame"/>
+
+      <joint name="asus_camera_rgb_joint" type="fixed">
+        <origin xyz="0.0 0.022 0.0" rpy="0 0 0" />
+        <parent link="asus_camera_link" />
+        <child link="asus_camera_rgb_frame"/>
+      </joint>
+
+      <link name="asus_camera_rgb_frame"/>
+
+      <joint name="asus_camera_rgb_optical_joint" type="fixed">
+        <origin xyz="0 0 0" rpy="${-PI/2} 0.0 ${-PI/2}" />
+        <parent link="asus_camera_rgb_frame" />
+        <child link="asus_camera_rgb_optical_frame"/>
+      </joint>
+
+      <link name="asus_camera_rgb_optical_frame"/>
+
+      <gazebo reference="asus_camera_depth_frame">
+        <sensor type="depth" name="asus_camera">
+          <update_rate>20</update_rate>
+          <camera>
+            <horizontal_fov>${62.8 * PI/180.0}</horizontal_fov>
+            <image>
+              <format>R8G8B8</format>
+              <width>640</width>
+              <height>480</height>
+            </image>
+            <clip>
+              <near>0.5</near>
+              <far>9</far>
+            </clip>
+          </camera>
+          <plugin name="asus_camera_camera_controller" filename="libgazebo_ros_openni_kinect.so">
+            <imageTopicName>asus_camera/rgb/image_raw</imageTopicName>
+            <cameraInfoTopicName>asus_camera/rgb/camera_info</cameraInfoTopicName>
+            <depthImageTopicName>asus_camera/depth/image_raw</depthImageTopicName>
+            <depthImageCameraInfoTopicName>asus_camera/depth/camera_info</depthImageCameraInfoTopicName>
+            <pointCloudTopicName>asus_camera/depth/points</pointCloudTopicName>
+            <frameName>asus_camera_depth_optical_frame</frameName>
+          </plugin>
+        </sensor>
+      </gazebo>
+
+
+
+
+
+
+
+
   <link name="xv11">
     <collision>
       <origin xyz="0 0 -0.019" rpy="1.57 0 -1.57"/>
@@ -134,9 +200,9 @@
        </material>
     </visual>
     <inertial>
-      <origin xyz="-0.01 0 0.07" rpy="0 0 0"/>
+      <origin xyz="-0.2 0 0.07" rpy="0 0 0"/>
       <mass value="10"/>
-      <inertia ixx="0.01" ixy="0" ixz="0" iyy="10" iyz="0" izz="0.01"/>
+      <inertia ixx="5" ixy="0" ixz="1" iyy="10" iyz="1" izz="1"/>
     </inertial>
   </link>
   <gazebo reference="base_link">
