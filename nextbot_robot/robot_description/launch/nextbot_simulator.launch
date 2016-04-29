@@ -20,7 +20,10 @@
   <!-- We resume the logic in empty_world.launch, changing only the name of the world to be launched -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <!--<arg name="world_name" value="$(find nextbot_robot)/worlds/my_world.world"/>-->
-    <arg name="world_name" value="$(find nextbot_robot)/worlds/maze_static_h2.world"/>
+<!--    <arg name="world_name" value="$(find nextbot_robot)/worlds/maze_static_h2.world"/>
+-->
+    <arg name="world_name" value="$(find nextbot_robot)/worlds/test_zone.sdf"/>
+
     <arg name="debug" value="$(arg debug)" />
     <arg name="gui" value="$(arg gui)" />
     <arg name="paused" value="$(arg paused)"/>
@@ -36,10 +39,8 @@
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
 	args="-urdf -model nextbot -param robot_description"/>
 
-
   <!-- Load joint controller configurations from YAML file to parameter server -->
   <rosparam file="$(find nextbot_robot)/robot_description/config/nextbot.yaml" command="load"/>
-
   <!-- load the controllers -->
   <node name="controller_spawner"
     pkg="controller_manager"
@@ -50,14 +51,12 @@
       rightWheel_effort_controller
       leftWheel_effort_controller"
   />
-
   <!-- convert joint states to TF transforms for rviz, etc -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen">
     <param name="robot_description" command="$(find xacro)/xacro.py '$(find nextbot_robot)/robot_description/urdf/nextbot.xacro'" />
     <param name="publish_frequency" value="100"/>
     <remap from="/joint_states" to="/nextbot/joint_states" />
   </node>
-
 <!--   <node pkg="tf" type="static_transform_publisher" name="laser_broadcaster" args="0 0 0  0 0 1 1 base_link laser 100" /> 
 
  <node pkg="tf" type="static_transform_publisher" name="proximity_broadcaster" args="0.1 0 0.19  0 0 0 1 base_link proximity 100" />-->
