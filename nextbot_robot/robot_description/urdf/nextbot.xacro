@@ -98,7 +98,7 @@
               <far>9</far>
             </clip>
           </camera>
-          <plugin name="asus_camera_camera_controller" filename="libgazebo_ros_openni_kinect.so">
+          <plugin name="asus_camera_controller" filename="libgazebo_ros_openni_kinect.so">
             <imageTopicName>asus_camera/rgb/image_raw</imageTopicName>
             <cameraInfoTopicName>asus_camera/rgb/camera_info</cameraInfoTopicName>
             <depthImageTopicName>asus_camera/depth/image_raw</depthImageTopicName>
