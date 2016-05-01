@@ -22,7 +22,7 @@
       <joint name="asus_camera_joint" type="fixed">
         <parent link="base_link"/>
         <child link="asus_camera_link"/>
-        <origin xyz="0 0 0.7" rpy="0 0 0"/>
+        <origin xyz="0 0 1.2" rpy="0 0 0"/>
 
       </joint>
  
@@ -99,11 +99,6 @@
             </clip>
           </camera>
           <plugin name="asus_camera_controller" filename="libgazebo_ros_openni_kinect.so">
-            <imageTopicName>asus_camera/rgb/image_raw</imageTopicName>
-            <cameraInfoTopicName>asus_camera/rgb/camera_info</cameraInfoTopicName>
-            <depthImageTopicName>asus_camera/depth/image_raw</depthImageTopicName>
-            <depthImageCameraInfoTopicName>asus_camera/depth/camera_info</depthImageCameraInfoTopicName>
-            <pointCloudTopicName>asus_camera/depth/points</pointCloudTopicName>
             <frameName>asus_camera_depth_optical_frame</frameName>
           </plugin>
         </sensor>
