@@ -46,7 +46,6 @@
     type="spawner" respawn="false"
     output="screen" ns="/nextbot"
     args="joint_state_controller
-      laser_position_controller
       rightWheel_effort_controller
       leftWheel_effort_controller"
   />

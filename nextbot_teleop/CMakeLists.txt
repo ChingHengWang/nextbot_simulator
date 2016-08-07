@@ -21,12 +21,8 @@ catkin_package(
 ## Build ##
 ###########
 
-add_executable(nextbot_teleop_joy src/nextbot_joy.cpp)
-target_link_libraries(nextbot_teleop_joy ${catkin_LIBRARIES})
-
-add_executable(nextbot_teleop_key1 src/nextbot_teleop_key1.cpp)
-target_link_libraries(nextbot_teleop_key1 ${catkin_LIBRARIES})
-
+add_executable(nextbot_teleop_key src/nextbot_teleop_key.cpp)
+target_link_libraries(nextbot_teleop_key ${catkin_LIBRARIES})
 #############
 ## Install ##
 #############
@@ -38,9 +34,9 @@ install(PROGRAMS
 )
 
 ## Mark executables and/or libraries for installation
-install(TARGETS nextbot_teleop_joy
-  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)
+#install(TARGETS nextbot_teleop_joy
+#  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+#)
 
 ## Mark all other useful stuff for installation
 install(DIRECTORY launch

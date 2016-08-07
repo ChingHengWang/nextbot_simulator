@@ -169,11 +169,7 @@ include_directories(
 add_executable(rotating_laser src/rotating_laser.cpp)
 target_link_libraries(rotating_laser ${catkin_LIBRARIES})
 
-add_executable(scan_from_sonar src/scan_from_sonar.cpp)
-target_link_libraries(scan_from_sonar ${catkin_LIBRARIES})
-
-add_executable(robot_pose_publisher src/robot_pose_publisher.cpp)
-target_link_libraries(robot_pose_publisher ${catkin_LIBRARIES})
-
+#add_executable(scan_from_sonar src/scan_from_sonar.cpp)
+#target_link_libraries(scan_from_sonar ${catkin_LIBRARIES})
 
 
